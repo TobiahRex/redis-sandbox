@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "redis-sandbox"
+version = "0.1.0"
+description = "Sandbox to expirement with redis control flows"
+authors = ["Tobiah Rex <tobiah.rex@gmail.com>"]
+readme = "README.md"
+packages = [{include = "redis_sandbox"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+redis = "^4.6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
