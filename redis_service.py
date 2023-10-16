@@ -1,7 +1,8 @@
 import redis
 
+
 class RedisService:
-    def __init__(self, host='localhost', port=6379, password=None, db=0):
+    def __init__(self, host="localhost", port=6379, password=None, db=0):
         """
         Initialize the RedisService class with connection parameters.
 
@@ -22,7 +23,11 @@ class RedisService:
         """
         try:
             self.redis_client = redis.StrictRedis(
-                host=self.host, port=self.port, password=self.password, db=self.db, decode_responses=True
+                host=self.host,
+                port=self.port,
+                password=self.password,
+                db=self.db,
+                decode_responses=True,
             )
             # 'decode_responses=True' allows the returned values to be in string format instead of bytes.
             self.redis_client.ping()  # Test the connection
@@ -66,3 +71,12 @@ class RedisService:
             raise Exception("Redis client is not connected. Call connect() first.")
 
         return self.redis_client.delete(key)
+
+
+if __name__ == "__main__":
+    redis_service = RedisService(host="localhost", port=6379, password=None, db=0)
+    redis_service.connect()
+    redis_service.set("name", "John Doe")
+    print(redis_service.get("name"))
+    redis_service.delete("name")
+    print(redis_service.get("name"))
